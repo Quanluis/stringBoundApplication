@@ -5,6 +5,7 @@
 #include <string.h>
 #include <vector>
 #include <algorithm>
+#include <conio.h>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ class bCheckString {
 void bCheckString::driver() {
 
 	intro();
-	 //checkString();
+	checkString();
 	validate();
 
 }
@@ -64,13 +65,15 @@ void bCheckString::checkString() {
 
 	}
 
+	cout << endl;
+
 	cout << "Legitimate string positions are " << x.front() << "..." << x.back() - 1 << endl;
 
 }
 
 void bCheckString::validate() {
 
-	checkString();
+	int i = 0;
 
 	cout << "Enter an integer describing a position inside or outside the string: ";
 
@@ -80,24 +83,24 @@ void bCheckString::validate() {
 
 	try {
 
-		if (inputPosition < userInput.length()){
+		if (inputPosition <= userInput.length()) {
 			cout << "position is in range." << endl;
 
-			for (int i = 0; i < userInput.length(); i++) {
+			cout << "The character at position " << inputPosition << " is " << userInput[inputPosition] << endl;
 
-				if (inputPosition = userInput[i]) {
-				  	cout << "The character at position " << x[i] << " is " << userInput[i] << endl;
-				};
-			
-			}
+			validate();
 		}
-		else
+		else if (x[i] == userInput[i]) {
+			cout << "The character at position " << x[i] << " is " << userInput[i] << endl;
+		}
+
+		else 
 			throw exception();
 
 	}
 	catch(exception) {
 		cout << "Access violation in string" << endl;
-		exit(1111);
+		
 	} 
 
 }
