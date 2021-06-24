@@ -25,27 +25,18 @@ class bCheckString {
 
 		//Exception class 
 
-		class exception {};
+		class BoundsException {};
 
 	public:
 
 	void driver();
 
+
 };
 
 /*****************************Method Definitions*****************************/
 
-//bCheckString: driver
 //order of execution
-
-
-void bCheckString::driver() {
-
-	intro();
-	checkString();
-	validate();
-
-}
 
 void bCheckString::intro() {
 
@@ -83,25 +74,28 @@ void bCheckString::validate() {
 
 	try {
 
-		if (inputPosition <= userInput.length()) {
+		if (inputPosition < userInput.length()) {
 			cout << "position is in range." << endl;
 
 			cout << "The character at position " << inputPosition << " is " << userInput[inputPosition] << endl;
-
 			validate();
 		}
-		else if (x[i] == userInput[i]) {
-			cout << "The character at position " << x[i] << " is " << userInput[i] << endl;
-		}
+		else
+			throw BoundsException();
+	}
+	catch (BoundsException) {
 
-		else 
-			throw exception();
+		cout << "Access violation in the string." << endl;
 
 	}
-	catch(exception) {
-		cout << "Access violation in string" << endl;
-		
-	} 
+
+}
+
+void bCheckString::driver() {
+
+	intro();
+	checkString();
+	validate();
 
 }
 
